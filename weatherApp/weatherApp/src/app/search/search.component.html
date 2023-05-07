@@ -1,0 +1,52 @@
+<div *ngIf="isLoading; else content">
+  <div class="spinner">
+    <div class="spinner-inner"></div>
+  </div>
+</div>
+
+<ng-template #content>
+  <div class="weather-app">
+    <div
+      class="search-bar"
+      [ngClass]="{ 'dark-theme': this.themeService.getMode() }"
+    >
+      <input
+        type="text"
+        [(ngModel)]="searchLocation"
+        placeholder="Search location"
+        id="search"
+      />
+      <button (click)="search()">Search</button>
+    </div>
+
+    <div
+      class="weather-card"
+      *ngIf="data"
+      [ngClass]="{ 'dark-theme': this.themeService.getMode() }"
+    >
+      <div class="weather-icon">
+        <img [src]="imgSrc" alt="Weather Icon" />
+      </div>
+      <h2 class="city">{{ data.location.name }}</h2>
+      <p class="condition">{{ data.current.condition.text }}</p>
+      <div class="temperature">
+        <span class="value">{{ data.current.temp_c }}</span>
+        <span class="unit">°C</span>
+      </div>
+      <div class="extra-info">
+        <div class="info-item">
+          <span class="label">Feels Like:</span>
+          <span class="value">{{ data.current.feelslike_c }}°C</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Wind:</span>
+          <span class="value">{{ data.current.wind_kph }} km/h</span>
+        </div>
+        <div class="info-item">
+          <span class="label">Humidity:</span>
+          <span class="value">{{ data.current.humidity }}%</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-template>

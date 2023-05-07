@@ -1,0 +1,12 @@
+<div class="homepage" [ngClass]="{'dark-theme': this.themeService.getMode()}">
+  <h1 class="title">Weather App</h1>
+  <div class="search-bar" [ngClass]="{'dark-theme': this.themeService.getMode()}">
+    <input
+      [(ngModel)]="city"
+      class="search-input"
+      placeholder="Enter a location"
+      id="search"
+    />
+    <button (click)="getWeather()" class="search-button">Search</button>
+  </div>
+</div>

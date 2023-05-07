@@ -1,0 +1,6 @@
+<button
+  (click)="this.themeService.toggleMode()"
+  class="toggle-button"
+  [ngClass]="{ 'dark-theme': this.themeService.getMode() }"
+></button>
+<router-outlet></router-outlet>
